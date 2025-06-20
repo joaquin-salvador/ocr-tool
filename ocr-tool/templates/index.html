@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload File</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css">
+</head>
+<body>
+    <h1>Upload New Files</h1>
+    <form action="/" class="dropzone" id="my-dropzone" method="post" enctype="multipart/form-data">
+        <div class="dz-message">
+            Drag and drop files or folders here, or click to upload
+        </div>
+    </form>
+
+    <h2>Actions</h2>
+    <form action="/download" method="get">
+        <button type="submit">Download results.csv</button>
+    </form>
+    <form action="/delete" method="post">
+        <button type="submit">Delete All Contents in Uploads</button>
+    </form>
+    <form action="/" method="get">
+    <button name="sort" value="alphabetical" type="submit">Sort Alphabetically</button>
+    </form>
+
+    <h2>Results</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Filename</th>
+                <th>OCR Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result['filename'] }}</td>
+                <td>{{ result['ocr_result'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.js"></script>
+    <script>
+    Dropzone.options.myDropzone = { // Use the form's ID for Dropzone options
+        paramName: "file[]", // The name that will be used to transfer the file. This should match the name expected by Flask.
+        maxFilesize: 2, // Maximum file size in MB.
+        url: "/", // Set the target URL for file uploads.
+        autoProcessQueue: true, // Automatically process the queue when a file is added.
+        parallelUploads: 10, // Number of files to upload simultaneously. Adjust as needed.
+        uploadMultiple: false, // Set to true if you want to upload all files at once.
+        acceptedFiles: 'image/*,application/zip', // Accept images and zip files
+        init: function() {
+            this.on("complete", function(file) {
+                if (this.getQueuedFiles().length === 0) {
+                    window.location.reload(); // Reload the page or redirect as needed after successful upload
+                }
+            });
+            this.on("successmultiple", function() {
+                window.location.reload(); // Reload the page or redirect as needed after successful upload
+            });
+        }
+    };
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# Include the README
+include README.md
+
+# Include the LICENSE
+include LICENSE.txt
+
+# Include the requirements file
+include requirements.txt
+
+# Include all TXT files in the project root
+recursive-include *.txt
+
+# Include template HTML files
+recursive-include document_classifier/templates *.html
+
+# Include static files such as CSS and JavaScript
+recursive-include document_classifier/static *
+
+# Exclude all bytecode
+global-exclude *.pyc
+global-exclude __pycache__/*
