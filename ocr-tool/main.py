@@ -21,10 +21,6 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-# Use the function to get the correct path of 'model.pkl'
-model_path = resource_path('model.pkl')
-model = load(model_path)
-
 # Specify the path to the Tesseract executable
 # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 

@@ -7,7 +7,6 @@ a = Analysis(
     pathex=['C:\\Users\\wakib\\Desktop\\twsc\\document_classifier'],
     binaries=[],
     datas=[
-        ('C:\\Users\\wakib\\Desktop\\model.pkl', '.'),  # Include model.pkl
         ('C:\\Users\\wakib\\Desktop\\twsc\\document_classifier\\templates', 'templates'),  # Include templates folder
         ('C:\\Users\\wakib\\Desktop\\twsc\\document_classifier\\uploads', 'uploads')  # Include uploads folder
     ],
